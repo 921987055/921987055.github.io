@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>光速了解汇编语言 | Hexo</title>
+
+
+    <meta name="keywords" content="汇编语言">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="光速了解汇编语言什么是机器语言?要想了解什么是汇编语言, 首先你得知道什么是机器语言! 计算机能够直接识别的是由二进制数0和1组成的代码, 它是不需要翻译直接就能识别 (直接执行) 的”母语”. 我们打个比方: 假设我们定义 0011 这几个数代表”关机”, 那么把 0011 这个指令发送到cpu中, 那么电脑就会运行关机指令, 然后关机. 实际上指令并不会像 0011 那样简单, 上面只是举个例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="光速了解汇编语言">
+<meta property="og:url" content="http://example.com/2023/04/16/article1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="光速了解汇编语言什么是机器语言?要想了解什么是汇编语言, 首先你得知道什么是机器语言! 计算机能够直接识别的是由二进制数0和1组成的代码, 它是不需要翻译直接就能识别 (直接执行) 的”母语”. 我们打个比方: 假设我们定义 0011 这几个数代表”关机”, 那么把 0011 这个指令发送到cpu中, 那么电脑就会运行关机指令, 然后关机. 实际上指令并不会像 0011 那样简单, 上面只是举个例">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/.com//.%5Carticle1%5CArchitecture.png">
+<meta property="og:image" content="http://example.com/.com//.%5Carticle1%5CDOSBox.png">
+<meta property="og:image" content="http://example.com/.com//.%5C%E5%85%89%E9%80%9F%E4%BA%86%E8%A7%A3%E6%B1%87%E7%BC%96%5C%E5%9C%B0%E5%9D%80.png">
+<meta property="og:image" content="http://example.com/.com//.%5Carticle1%5CAssembly.png">
+<meta property="og:image" content="http://example.com/.com//.%5Carticle1%5CLink.png">
+<meta property="og:image" content="http://example.com/.com//.%5Carticle1%5Cexcute.png">
+<meta property="article:published_time" content="2023-04-16T06:42:23.000Z">
+<meta property="article:modified_time" content="2023-04-16T08:11:16.664Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="汇编语言">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/.com//.%5Carticle1%5CArchitecture.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Johnny Gu</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+                    <a href="/atom.xml" class="navbar-menu button">RSS</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+                    <a href="/atom.xml" class="dropdown-menu button">RSS</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        光速了解汇编语言
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2023/04/" class="post-meta__date button">2023-04-16</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%99%A8%E8%AF%AD%E8%A8%80"><span class="toc-text">什么是机器语言?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80"><span class="toc-text">汇编语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E7%A1%AC%E4%BB%B6"><span class="toc-text">计算机的硬件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%89%8B%E7%BC%96%E5%86%99%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F"><span class="toc-text">动手编写第一个汇编程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E7%BB%AD%E5%AD%A6%E4%B9%A0%E6%B1%87%E7%BC%96"><span class="toc-text">继续学习汇编</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%99%A8%E8%AF%AD%E8%A8%80"><span class="toc-text">什么是机器语言?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80"><span class="toc-text">汇编语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E7%A1%AC%E4%BB%B6"><span class="toc-text">计算机的硬件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%89%8B%E7%BC%96%E5%86%99%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F"><span class="toc-text">动手编写第一个汇编程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E7%BB%AD%E5%AD%A6%E4%B9%A0%E6%B1%87%E7%BC%96"><span class="toc-text">继续学习汇编</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="光速了解汇编语言"><a href="#光速了解汇编语言" class="headerlink" title="光速了解汇编语言"></a>光速了解汇编语言</h1><h2 id="什么是机器语言"><a href="#什么是机器语言" class="headerlink" title="什么是机器语言?"></a>什么是机器语言?</h2><p>要想了解什么是汇编语言, 首先你得知道什么是机器语言!</p>
+<p>计算机能够直接识别的是由二进制数0和1组成的代码, 它是不需要翻译直接就能识别 (直接执行) 的”<strong>母语</strong>”. 我们打个比方: 假设我们定义 0011 这几个数代表”关机”, 那么把 0011 这个指令发送到cpu中, 那么电脑就会运行关机指令, 然后关机.</p>
+<p>实际上指令并不会像 0011 那样简单, 上面只是举个例子. 比如完成两个数据 100 和 256 相加的功能, 在8086处理器的二进制代码序列如下:</p>
+<p>10111000 01100100 00000000</p>
+<p>00000101 00000000 00000001</p>
+<p>喔喔喔! 是不是吓一跳, 几乎没有人能够直接读懂该程序段的功能, 因为机器语言就是看起来毫无意义的一串代码. 用机器语言编写程序的最大缺点就是难以理解, 因而极易出错, 也难以发现错误. </p>
+<p>为了克服机器语言的缺点, 人们采用便于描述指令功能的符号来表示机器指令—也就是我们的<strong>汇编语言</strong>!!!</p>
+<p>在开始汇编语言之前, 我们还需要了解<strong>十六进制</strong>. 二进制虽然只有0和1两个数码, 但表达信息时会很长. 为了简化表达, 常用到16进制. 因为一个16进制位就可以表达 4位二进制数, 并且易于相互转换, 即二进制数 0000, 0001, 0010, …… ,1001, 1010, 1011, 1100, 1101, 1110, 1111用<strong>十六进制</strong>表达依次是0, 1, 2, ……, 9, A, B, C, D, E, F, 其中 A ~ F 依次表示十进制的 10 ~ 15. 这样 上述二进制代码序列用16进制代码表示为:</p>
+<p>B8 64 00</p>
+<p>05 00 01</p>
+<h2 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h2><p>有了汇编语言, 程序就变得好写好懂容易检查了起来!</p>
+<p>比如实现与上述机器语言所对应的 100 与 256 相加的汇编程序片段如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV AX, 100</span><br><span class="line">ADD AX, 256</span><br></pre></td></tr></table></figure>
+
+<p>其中第一条代码 ‘MOV’ 是 move <strong>移动</strong>的意思, 是指把 100 这个数字移动到 cpu 的寄存器 AX 上, 在这里 AX 你可以理解为 cpu 的存储元件, cpu 想要做加减乘除的计算必须从自己的存储元件—<strong>寄存器</strong>中取数据, 然后才能计算, 这里 AX 是指 CPU 中一个名字叫做 AX 的寄存器, 在 8086 处理器的架构中有很多寄存器, 比如 AX, BX, CX, DX, SP 等等, 其中一部分的功能仅仅是存储临时数据, 另一部分有它的特殊用途.</p>
+<p>第二条代码 ’ADD’ 是 add <strong>相加</strong>的意思, 是指把 256 这个数字加到寄存器 AX 上</p>
+<p>所以总的流程就是寄存器 AX 刚开始没有数字, 我们先将 100 存到寄存器 AX 中, 然后再用 256 和寄存器 AX 中的数字相加并保存到寄存器中, 得到最终结果.</p>
+<p>用了汇编语言, 是不是感觉比机器语言的 0101 ”人性化” 了很多? 不过如果真的想了解汇编语言, 必须得有一定的硬件知识才行, 比如上述代码的 AX , 你一定会问: ”为什么要保存到寄存器才能进行计算, 我直接计算不可以吗?” 这就引导到了我们的下一个知识点: <strong>计算机的硬件</strong>!</p>
+<h2 id="计算机的硬件"><a href="#计算机的硬件" class="headerlink" title="计算机的硬件"></a>计算机的硬件</h2><p>看到下面这张图是不是有点晕? ”这都啥是啥啊?” 现在先不用着急, 我们一点一点了解起来!</p>
+<p><img src="/.com//.%5Carticle1%5CArchitecture.png" alt="计算机的硬件"></p>
+<p>首先, 请出我们的最强大的计算机元件— <strong>处理器</strong>! 你也可以称之为<strong>CPU(Central Processing Unit).</strong></p>
+<p>cpu是计算机的大脑, 在整个计算机的结构中, 只有cpu可以执行指令处理数据, 所以每次处理数据都需要将对应的指令和数据送到cpu之后, 由cpu来处理. 你可以看到cpu内被分为了三大功能—<strong>运算器, 控制器, 寄存器</strong>, 其中运算器只负责各种加减乘除的运算, 控制器负责控制整个cpu的运行, 确保cpu在正常工作, 寄存器则是在cpu内的高速存储设备, 方便cpu快速的暂存数据和取数.</p>
+<p>既然需要<strong>数据</strong>, 那就一定有存储数据的结构— <strong>存储器!</strong> 存储器的功能就如它的字面意思一样—存储数据. 在图中有三个存储器, 分别是主存储器, 辅助存储器和在 CPU 里的寄存器. <strong>CPU如果想访问数据, 只能在寄存器中访问, 所以每一次CPU想使用数据, 都必须将数据从主存储器转移到CPU的寄存器中.</strong> 有些人可能会问: “为什么不能把寄存器做的很大, 然后CPU直接访问寄存器, 不就少了从主存储器转移到寄存器这一步了吗?” 好问题. 之所以不能把寄存器做大的原因是因为制作寄存器的造价昂贵, 而主存储器的造价更低, 辅助存储器的造价更更低! 所以为了经济效益, CPU的寄存器容量很小.</p>
+<p>除了数据以外, 有些时候cpu还得处理由外部设备发送的<strong>指令</strong>, 比如一个打印机发送 “请求打印” 的指令, 也需要由cpu进行处理回应 “允许打印”. 发送指令到cpu的叫 <strong>输入设备</strong> , 相反, cpu发出指令到设备的设备叫 <strong>输出设备</strong> . 输入设备和输出设备统称为<strong>外部设备</strong>, 简称<strong>外设.</strong></p>
+<p>数据和指令当然不能凭空飞到cpu里, 必须有一个介质来运输它, 这就是<strong>系统总线</strong>的作用—像一个高速公路一样运输数据和指令.</p>
+<p>说完这些, 你可能会疑问: ”那个 <strong>I&#x2F;O接口</strong> 是什么?” 别被这个名字吓住了, I&#x2F;O接口的全称叫Input&#x2F;Output接口, 即 <strong>输入&#x2F;输出接口</strong> , 是cpu与外部设备之间交换信息的连接电路. 举一个例子: 比如你的打印机是一个输入输出设备, 你需要将打印机的线插到电脑的插口里, 这样你就把打印机和cpu相联系起来了, 他们之间可以互发数据, 让打印机正常工作, 那个<strong>插口</strong>就是<strong>I&#x2F;O接口</strong>. 你的鼠标键盘, 还有你的硬盘都是通过I&#x2F;O接口与电脑相连的.</p>
+<p>OK! 说了这么多, 现在我们来梳理一下吧: 计算机里大脑是<strong>cpu</strong>, 还有存储设备: <strong>主存储器</strong> (内存) 和通过<strong>I&#x2F;O接口</strong>连接的<strong>辅助存储器</strong> (硬盘等) , 此外还有传输数据的<strong>系统总线</strong>和通过I&#x2F;O接口连接的<strong>外部设备</strong>.</p>
+<p>很好! 你已经了解了计算机的硬件知识啦~让我们进入下一步: <strong>编写第一个汇编程序!</strong></p>
+<h2 id="动手编写第一个汇编程序"><a href="#动手编写第一个汇编程序" class="headerlink" title="动手编写第一个汇编程序"></a>动手编写第一个汇编程序</h2><p>汇编语言的种类非常非常多, 他们都是根据其对应的cpu进行编写的. 现在的电脑cpu非常强大, 已经全部换为64位的cpu, 但其对应的汇编语言非常复杂, 在这里我们用更简单的16位cpu 8086处理器对应的汇编语言.</p>
+<p>我这里使用dosbox, 一个x86的DOS模拟器, 来模拟8086处理器的环境:</p>
+<p><img src="/.com//.%5Carticle1%5CDOSBox.png" alt="DOSBox"></p>
+<p>为了节省篇幅, 怎么下载DOSBox, 怎么用masm在DOSBox进行汇编编程, 这些在网上搜索一下就可以搜到, 这里就不过多叙述, 让我们直接开始编程!!</p>
+<p>在汇编语言中, 一共有三个段: 数据段, 堆栈段和代码段. 数据段存放不变的静态数据, 堆栈段存放会改变的动态数据, 而代码段存放代码. 也就是说, 如果你要定义数据, 只能在数据段定义, 你不能在代码段定义, 否则就报错了! 堆栈段和代码段也是这样.</p>
+<p>Talk is cheap, show me the code! 我们直接上代码, 然后一点点讲解.</p>
+<p>首先是数据段:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">; 数据段</span><br><span class="line">DATA	SEGMENT</span><br><span class="line">	STR	DB &#x27;Hello, World!&#x27;, 0DH, 0AH, 24H	; DB是字节, DW是字</span><br><span class="line">	; 0DH 是回车</span><br><span class="line">	; 0AH 是换行</span><br><span class="line">	; 24H &#x27;$&#x27;, 即结束符号</span><br><span class="line">DATA	ENDS</span><br><span class="line">; 数据段结束</span><br></pre></td></tr></table></figure>
+
+<p>在数据段中, ‘DATA SEGMENT’ 代表数据段的开始, ‘DATA ENDS’ 代表数据段的结束. STR是我起的数据的名字, 这只是一个名字, 所以你也可以起 PIG, PETER 什么的都可以. 在代码段中STR是指这个数据的<strong>首地址</strong>所存的数据. 那么什么是首地址呢? 我们下面会说, 先接着看代码: <strong>DB</strong>代表定义的数据是以<strong>字节</strong>为单位的, 在计算机里一个字符的大小刚好是一个字节. 接着就是我们定义的数据了: ‘Hello, World!’ 这是我们要输出的字符串, 至于0DH, 0AH, 24H这三个分别是回车, 换行和字符串结束符号 ’$’ . 这个字符串结束符号的功能是: 当我们让屏幕显示这个字符串时, 计算机知道这个字符串的结尾是 ’$’ , 这样计算机在显示完 ‘Hello, World! 之后看到有 ‘$’ , 知道显示完毕, 可以执行下一条指令.</p>
+<p>接下来我们要说一说什么是<strong>首地址</strong>: 我们知道所有的数据都存储在存储器里, 而cpu如何在存储器中精准的找到数据所在呢? 在存储器中, 就像邮递员邮递信件一样, 每一家都有自己的门牌号, 同样的, 每个存储单元也都有自己的 “门牌号” — <strong>地址</strong> 来方便CPU找到数据**.**</p>
+<p><img src="/.com//.%5C%E5%85%89%E9%80%9F%E4%BA%86%E8%A7%A3%E6%B1%87%E7%BC%96%5C%E5%9C%B0%E5%9D%80.png" alt="DOSBox"></p>
+<p>地址是按顺序编排的, 比如: 一个计算机内存有 1024 字节, 那么它的地址就是 00H ~ 3FFH (H代表用十六进制表示, 即 11H 是十进制的 17 , 同时地址是从0开始计数的, 不是1). 如上图, 我们假设每个存储单元都是一字节 (DB) , 同时设定起始的地址为 00H .</p>
+<p>图中的每一个方格都是存储器中的一个存储单元, 第一个存储单元里存储了我们定义的 ’Hello, World!’ 的第一个字符 ’H’, <strong>它的地址是 00H</strong>, 同时他也是 STR 的<strong>首地址</strong>. 接着我们定义的一系列字符和数据都依次地放在存储器中, 它们的地址依次是 00H ~ 0FH. </p>
+<p>实际在计算机中, 起始地址不会是 00H , 它可能是 1234H, ab42H 什么的, 不过这都不影响, 只要告诉计算机这个字符串 STR 的<strong>首地址</strong>是哪里, 计算机就可以精准的找到我们存储的 “Hello, World!”.</p>
+<p>之后是代码段:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">; 代码段</span><br><span class="line">CODE	SEGMENT</span><br><span class="line">	ASSUME CS:CODE,DS:DATA	; 每个程序必有的</span><br><span class="line">START:</span><br><span class="line">	MOV AX,DATA		; 指定数据段, 但是段寄存器不能直接赋值，需要通过AX过渡一下</span><br><span class="line">	MOV DS,AX</span><br><span class="line">	MOV DX,OFFSET STR	; 将STR的首地址传给DX，OFFSET表示取首地址</span><br><span class="line">	MOV AH, 09H		; 显示</span><br><span class="line">	INT 21H</span><br><span class="line">	MOV AH,4CH		; 接下来要调用 &#x27;返回DOS系统&#x27;</span><br><span class="line">	INT 21H		; 系统功能调用</span><br><span class="line">CODE	ENDS</span><br><span class="line">; 代码段结束</span><br><span class="line">	END START</span><br></pre></td></tr></table></figure>
+
+<p>和数据段一样, 他也有一个开始和结束: ‘CODE SEGMENT’ 代表代码段开始, ‘CODE ENDS’ 代表代码段结束. 在数据段开始后, 必须有一段代码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ASSUME CS:CODE, DS:DATA</span><br></pre></td></tr></table></figure>
+
+<p>这段代码的意思很难一下解释清, 我们只需要知道每个代码段开始都必须有这一行, 否则代码无法正常运行.</p>
+<p>接着是 ‘START:’ <strong>标号</strong>, 他代表着咱们程序的<strong>入口</strong>, 也就是程序真正开始运行的地方 (之前的代码都是为程序运行做准备) . </p>
+<p>接着是 <strong>MOV</strong> 指令 他的格式是 ‘MOV x, y’, 意思是将数据 y 移动(move)到 x 里, 他的格式有很多种, 为了简化, 这里只讲程序用到的:</p>
+<p>首先是前两行代码 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,DATA</span><br><span class="line">MOV DS,AX</span><br></pre></td></tr></table></figure>
+
+<p>这两行代码的意思是告诉程序我们前面定义的数据段在哪里. 代码执行过程是将数据段移动到寄存器AX, 接着将AX存储的数据段地址移动到数据段寄存器DS (Data Segment register).</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV DX,OFFSET STR	; 将STR的首地址传给DX，OFFSET表示取首地址</span><br></pre></td></tr></table></figure>
+
+<p>接着的这行代码是将咱们前面数据段定义的字符串STR的首地址送到寄存器DX. 接下来的代码会让计算机查看寄存器DX中存的地址, 并依次将地址的信息显示到屏幕上.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV AH, 09H		; 显示</span><br><span class="line">INT 21H</span><br></pre></td></tr></table></figure>
+
+<p>这里出现了新的命令<strong>INT中断例程(interrupt routine)</strong>, 他的意思简单来说是检查寄存器AH中存储的指令, 并执行这个指令. 这里我们将指令 ‘显示’, 即 09H 移动到寄存器AH, 接着使用INT 21H指令, 调用’显示’ 这个<strong>中断</strong>(这里可以将中断理解为调用一个命令), 21H是中断的号码, 这里只需要了解想要让计算机显示字符必须要固定运行这两行代码.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV AH,4CH		; 接下来要调用 &#x27;返回DOS系统&#x27;</span><br><span class="line">INT 21H		; 系统功能调用</span><br></pre></td></tr></table></figure>
+
+<p>之后就是让程序结束, 同样的, 也是固定的两行代码.</p>
+<p>最后的 ‘END START’ 表示咱们的<strong>入口程序结束</strong>, 整个程序也就执行完毕了.</p>
+<p>你可能会疑问:”诶? 怎么没有堆栈段?”</p>
+<p>在程序中, 堆栈段是不必须的, 我们的程序没有用到堆栈段, 所以没有加入.</p>
+<p>我们来重新看一下整段程序:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">; 数据段</span><br><span class="line">DATA	SEGMENT</span><br><span class="line">	STR	DB &#x27;Hello, World!&#x27;, 0DH, 0AH, 24H	; DB是字节, DW是字</span><br><span class="line">	; 0DH 是回车</span><br><span class="line">	; 0AH 是换行</span><br><span class="line">	; 24H &#x27;$&#x27;, 即结束符号</span><br><span class="line">DATA	ENDS</span><br><span class="line">; 数据段结束</span><br><span class="line"></span><br><span class="line">; 代码段</span><br><span class="line">CODE	SEGMENT</span><br><span class="line">	ASSUME CS:CODE,DS:DATA	; 每个程序必有的</span><br><span class="line">START:</span><br><span class="line">	MOV AX,DATA		; 指定数据段, 但是段寄存器不能直接赋值，需要通过AX过渡一下</span><br><span class="line">	MOV DS,AX</span><br><span class="line">	MOV DX,OFFSET STR	; 将STR的首地址传给DX，OFFSET表示取首地址</span><br><span class="line">	MOV AH, 09H		; 显示</span><br><span class="line">	INT 21H</span><br><span class="line">	MOV AH,4CH		; 接下来要调用 &#x27;返回DOS系统&#x27;</span><br><span class="line">	INT 21H		; 系统功能调用</span><br><span class="line">CODE	ENDS</span><br><span class="line">; 代码段结束</span><br><span class="line">	END START</span><br></pre></td></tr></table></figure>
+
+<p>好了! 将程序编好后, 就让我们运行一下吧!</p>
+<p>我们将代码进行<strong>汇编</strong>和<strong>链接</strong>操作之后就可以直接运行了:</p>
+<p>进行<strong>汇编</strong>过程: 汇编过程实际上指把汇编语言代码翻译成目标机器指令 (就是0101这样的二进制) 的过程.</p>
+<p><img src="/.com//.%5Carticle1%5CAssembly.png" alt="DOSBox"></p>
+<p>进行<strong>链接</strong>过程: 实际编程中可能会有很多个代码文件, 一个代码文件中可能引用了另外一个代码文件中的代码, 所以需要有<strong>链接</strong>过程将他们连接起来, 最终形成可执行文件.</p>
+<p><img src="/.com//.%5Carticle1%5CLink.png" alt="DOSBox"></p>
+<p>运行可执行文件!</p>
+<p><img src="/.com//.%5Carticle1%5Cexcute.png" alt="运行过程"></p>
+<p>OK! 从图中可以看到我们的第一个汇编程序正常运行! 输出了 ‘Hello, World!’</p>
+<h2 id="继续学习汇编"><a href="#继续学习汇编" class="headerlink" title="继续学习汇编"></a>继续学习汇编</h2><p>这篇文章仅仅是一篇汇编的启蒙文章, 从最简单的8086 16位指令入手, 只讲了一些简单的数据结构和指令. 如果想继续深入学习汇编, 可以从以下几个方面入手:</p>
+<ol>
+<li>学习其他架构的汇编语言: 比如x86-64, ARM, MIPS等, 了解不同架构的汇编语言可以有助于理解不同计算机体系结构的差异, 了解计算机硬件的不同特性.</li>
+<li>学习操作系统和汇编的交互: 操作系统与汇编语言的交互是汇编语言进一步深入学习的必经之路。您可以学习操作系统如何调用汇编语言程序，了解操作系统如何管理内存和资源，以及如何编写操作系统的汇编语言驱动程序等。</li>
+<li>学习计算机的硬件知识: 汇编语言与计算机体系结构和CPU是分不开的, 学习更多的计算机硬件知识有助于深入了解汇编语言.</li>
+</ol>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Johny Gu
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2023/04/16/article1/">http://example.com/2023/04/16/article1/</a>
+        </p>
+        
+            <strong>
+                <p> © 2023 johnny gu </p>
+
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2023-04-16</p></div> 
+    <div class="post-entry__tags"><a href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" class="post-tags__link button"># 汇编语言</a></div> 
+</article>
+
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2023 <a href="/">Hexo</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('false')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

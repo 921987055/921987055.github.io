@@ -11,21 +11,14 @@ myImage.onclick = () => {
 let myButton = document.querySelector('button');
 let myHeading = document.querySelector('h1');
 function setUserName() {
-    let myName = prompt('请输入你的名字:');
-    if(!myName || myName === '') {
+    let myName = prompt('请输入密码:');
+    if(!myName || myName === '' || myName !== 'xihuan') {
         setUserName();
     }
-    localStorage.setItem('name', myName);
-    myHeading.textContent = '小顾喜欢小丁同学!!!!超级喜欢的那种!!! ' + myName;
+    //localStorage.setItem('name', myName);
+    myHeading.textContent = '小顾喜欢小丁同学!!!!超级喜欢的那种!!!';
 }
-
-if(!localStorage.getItem('name')) {
-    setUserName();
-  } else {
-    let storedName = localStorage.getItem('name');
-    myHeading.textContent = '小顾喜欢小丁同学!!!!超级喜欢的那种!!! ' + storedName;
-  }
-
+setUserName();
 myButton.onclick = function() {
     setUserName();
  }
